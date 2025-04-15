@@ -141,3 +141,16 @@ function saveData(){
         resetForm();
         $("#rollno").focus();
 }
+
+
+function changeData(){
+    $("#change").prop('disabled', true);
+    var jsonChg = validateData()
+    var updateRequest = createUPDATERecordRequest( connectToken, jsonChg, dbName, relName, localStorage.getItem("recno"));
+    jQuery.ajaxSetup({async: false});
+    var resJsonObj = executeCommandAtGivenBaseUrl(updateRequest , jpdbBaseURL , jpdbIML )
+    jQuery.ajaxSetup({async: true});
+    resetForm();
+    $("#rollno").focus();
+    console.log(resJsonObj)
+}
